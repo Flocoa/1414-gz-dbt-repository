@@ -6,8 +6,87 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        columns:
+          - name: date_date
+            description: date purshased
+            freshness:
+              warn_after:
+                count: 90
+                period: day
+            loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+          - name: orders_id
+            description: fk ship
+            #tests:
+              #- unique:
+              #  column_name: "(orders_id || '-' || products_id)"
+              #- dbt_utils.unique_combination_of_columns:
+              #  combination_of_columns:
+              #    - orders_id
+              #    - products_id
+          - name: pdt_id
+            description: fk pdt
+          - name: revenue
+            description: qty * selling price, money spent by customer
+          - name: quantity
+            description: qty of pdts purchased for an order
+
       - name: product
         identifier: raw_gz_product
+        columns:
+          - name: products_id
+            description: pk of table
+            tests:
+              - unique
+              - not_null  
+          - name: purchase_price
+            description: price of pdt
+        
       - name: ship
         identifier: raw_gz_ship
-        
+        description: greenweez shipment
+        columns:
+          - name: orders_id
+            description: pk of table
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: price paid by customer for shipping
+          - name: log_cost
+            description: cost of parcel
+          - name: ship_cost
+            description: shipping cost of gwz 
+
+models:
+  - name: stg_raw_product
+  - name: stg_raw_sales
+  - name: stg_raw_ship
+  - name: int_sales_margin
+    description: margin calcultation per order line / product sale
+    columns:
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+      - name: Purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price 
+  - name: int_orders_margin
+    description: margin calcultation per order 
+    columns:
+      - name: orders_id
+        description: primary key
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+      - name: Purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price 
+      - name: date_date
+        description: date of the order
+      - name: revenue
+        description: sum of revenue per order 
+      - name: quantity
+        description: sum of quantity per order
+  - name: int_orders_operational
+    description: operational margin calcultation per order 
+    columns:
+      - name: operational_margin 
+        description: Operational margin = margin + shipping fee - log_cost - ship_cost
+  - name: finance_days
+    description: finance calculation per days
