@@ -58,9 +58,9 @@ sources:
             description: shipping cost of gwz 
 
 models:
-  - name: stg_raw__product
-  - name: stg_raw__sales
-  - name: stg_raw__ship
+  #- name: stg_raw__product
+  #- name: stg_raw__sales
+  #- name: stg_raw__ship
   - name: int_sales_margin
     description: margin calcultation per order line / product sale
     columns:
