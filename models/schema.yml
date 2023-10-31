@@ -17,7 +17,7 @@ sources:
           - name: orders_id
             description: fk ship
             #tests:
-              #- unique:
+             # - unique:
               #  column_name: "(orders_id || '-' || products_id)"
               #- dbt_utils.unique_combination_of_columns:
               #  combination_of_columns:
