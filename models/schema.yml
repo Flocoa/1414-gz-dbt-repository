@@ -16,13 +16,13 @@ sources:
             loaded_at_field: "CAST(date_date AS TIMESTAMP)"
           - name: orders_id
             description: fk ship
-            #tests:
-             # - unique:
-              #  column_name: "(orders_id || '-' || products_id)"
+            tests:
+              - unique:
+                  column_name: "(orders_id || '-' || products_id)"
               #- dbt_utils.unique_combination_of_columns:
-              #  combination_of_columns:
-              #    - orders_id
-              #    - products_id
+              #    combination_of_columns:
+              #      - orders_id
+              #      - products_id
           - name: pdt_id
             description: fk pdt
           - name: revenue
