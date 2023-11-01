@@ -61,6 +61,7 @@ models:
   - name: stg_raw_product
   - name: stg_raw_sales
   - name: stg_raw_ship
+
   - name: int_sales_margin
     description: margin calcultation per order line / product sale
     columns:
@@ -68,6 +69,7 @@ models:
         description: Margin = Revenue - Purchase_cost
       - name: Purchase_cost
         description: Purchase_cost = Quantity * Purchase_price 
+        
   - name: int_orders_margin
     description: margin calcultation per order 
     columns:
@@ -83,6 +85,7 @@ models:
         description: sum of revenue per order 
       - name: quantity
         description: sum of quantity per order
+        
   - name: int_orders_operational
     description: operational margin calcultation per order 
     columns:
