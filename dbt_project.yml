@@ -42,3 +42,9 @@ models:
     mart:
       +materialized: table
       +schema: finance
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    staging:
+      +materialized: view
+      +schema: 
