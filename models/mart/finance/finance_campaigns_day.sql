@@ -11,9 +11,9 @@ SELECT
   purchase_cost,
   margin,
   shipping_fee,
-  logcost,
+  log_cost,
   ship_cost
-FROM `dev-acolyte-384710`.`dbt_flocoa`.`int_campaigns_days`
-FULL OUTER JOIN `dev-acolyte-384710`.`dbt_flocoa_finance`.`finance_days` 
+FROM {{ ref('int_campaigns_days') }}
+FULL OUTER JOIN {{ ref('finance_days') }} 
   USING (date_date)
 ORDER BY date_date DESC
