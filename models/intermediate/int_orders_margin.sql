@@ -1,5 +1,5 @@
 SELECT
-	orders_id AS id,
+	orders_id,
 	date_date,
 	ROUND(SUM(revenue),2) as revenue,
 	ROUND(SUM(quantity),2) as quantity,

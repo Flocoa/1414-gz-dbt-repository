@@ -34,7 +34,7 @@ sources:
             description: qty of pdts purchased for an order
 
       - name: product
-        identifier: raw_gz_product
+        identifier: raw_gz_products
         columns:
           - name: products_id
             description: pk of table
@@ -59,6 +59,19 @@ sources:
             description: cost of parcel
           - name: ship_cost
             description: shipping cost of gwz
+
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: facebook campaign
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: criteo campaign
+      - name: bing
+        identifier: raw_gz_bing
+        description: bing campaign
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: adwords campaign
 
 models:
   - name: stg_raw_product
@@ -96,3 +109,12 @@ models:
         description: Operational margin = margin + shipping fee - log_cost - ship_cost
   - name: finance_days
     description: finance calculation per days
+  - name: int_campaigns
+    description: data from all campaigns
+    tests:
+      - unique:
+          column_name: "(campaign_key || '-' || date_date)"
+      - not_null:
+          column_name:
+            - paid_source
+            - campaign_name
