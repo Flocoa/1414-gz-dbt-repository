@@ -34,7 +34,7 @@ sources:
             description: qty of pdts purchased for an order
 
       - name: product
-        identifier: raw_gz_product
+        identifier: raw_gz_products
         columns:
           - name: products_id
             description: pk of table
