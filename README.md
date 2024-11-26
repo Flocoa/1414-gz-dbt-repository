@@ -2,4 +2,4 @@
 
 ## Dbt project for the wagon challenges
 
-Repo of the correction of the 2 days on DBT 
+Repo containing all the dbt project answering all the challenges during the 2 day classes on DBT.
